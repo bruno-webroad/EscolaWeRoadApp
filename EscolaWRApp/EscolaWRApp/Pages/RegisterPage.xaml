@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EscolaWRApp.Pages.RegisterPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Entry Placeholder="Nome completo" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                <Label Text="Data de nascimento:" />
+                <DatePicker  />
+                <Picker x:Name="genero" Title ="Gênero"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="É bolsista?" Grid.Column="0" />
+                    <Switch Grid.Column="1" />
+                </Grid>
+                <Label Text="Sua aula começa às:" />
+                <TimePicker />
+                <Label Text="E termina às:" />
+                <TimePicker />
+                <Button Text="Finalizar cadastro" HorizontalOptions="Center" BackgroundColor="Blue" TextColor="White" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
