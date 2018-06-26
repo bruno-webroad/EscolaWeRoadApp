@@ -1,4 +1,5 @@
 using EscolaWRApp.Pages;
+using EscolaWRApp.Service;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,8 +12,11 @@ namespace EscolaWRApp
 		public App ()
 		{
 			InitializeComponent();
-
-			MainPage = new IntroductionPage();
+            var user = UserService.GetUserLogged();
+            if (user == null)
+                MainPage = new NavigationPage(new IntroductionPage());
+            else
+                MainPage = new IndexPage();
 		}
 
 		protected override void OnStart ()

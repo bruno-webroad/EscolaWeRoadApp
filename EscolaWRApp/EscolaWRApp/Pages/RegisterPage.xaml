@@ -5,23 +5,18 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10">
-                <Entry Placeholder="Nome completo" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                <Label Text="Data de nascimento:" />
-                <DatePicker  />
-                <Picker x:Name="genero" Title ="Gênero"/>
+                <Entry Placeholder="Nome completo" Text="{Binding User.Name}" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                <Entry Placeholder="Email" Text="{Binding User.Email}" FontSize="Medium" HorizontalTextAlignment="Center" />
+                <Entry Placeholder="Senha" Text="{Binding User.Password}" IsPassword="True" FontSize="Medium" HorizontalTextAlignment="Center" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="É bolsista?" Grid.Column="0" />
-                    <Switch Grid.Column="1" />
+                    <Label Text="É bolsista?" HorizontalOptions="EndAndExpand" Grid.Column="0" />
+                    <Switch Grid.Column="1" HorizontalOptions="StartAndExpand" IsToggled="{Binding User.IsScholarship}" />
                 </Grid>
-                <Label Text="Sua aula começa às:" />
-                <TimePicker />
-                <Label Text="E termina às:" />
-                <TimePicker />
-                <Button Text="Finalizar cadastro" HorizontalOptions="Center" BackgroundColor="Blue" TextColor="White" />
+                <Button Text="Finalizar cadastro" Command="{Binding RegisterCommand}" HorizontalOptions="Center" BackgroundColor="Blue" TextColor="White" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

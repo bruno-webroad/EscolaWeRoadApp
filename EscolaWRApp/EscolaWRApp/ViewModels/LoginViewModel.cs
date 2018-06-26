@@ -1,5 +1,6 @@
 ﻿using EscolaWRApp.Models;
 using EscolaWRApp.Pages;
+using EscolaWRApp.Service;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,21 +12,7 @@ namespace EscolaWRApp.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         public ICommand EntrarCommand { get; set; }
-
-        private Cliente _cliente;
-        public Cliente Cliente
-        {
-            get
-            {
-                return _cliente;
-            }
-
-            set
-            {
-                _cliente = value;
-                NotifyPropertyChanged("Cliente");
-            }
-        }
+        public ICommand RegisterCommand { get; set; }
 
         private string _email;
         public string Email
@@ -42,57 +29,69 @@ namespace EscolaWRApp.ViewModels
             }
         }
 
-        private string _erro;
-        public string Erro
+        private string _error;
+        public string Error
         {
             get
             {
-                return _erro;
+                return _error;
             }
 
             set
             {
-                _erro = value;
-                NotifyPropertyChanged("Erro");
+                _error = value;
+                NotifyPropertyChanged("Error");
             }
         }
 
-        private string _senha;
-        public string Senha
+        private string _password;
+        public string Password
         {
             get
             {
-                return _senha;
+                return _password;
             }
 
             set
             {
-                _senha = value;
-                NotifyPropertyChanged("Senha");
+                _password = value;
+                NotifyPropertyChanged("Password");
             }
         }
 
         public LoginViewModel()
         {
             this.EntrarCommand = new Command(Entrar);
-            Cliente = new Cliente();
+            this.RegisterCommand = new Command(Register);
         }
 
         private void Entrar()
         {
             if (string.IsNullOrEmpty(Email))
             {
-                Erro = "Por favor, digite um e-mail";
+                Error = "Por favor, digite um e-mail";
                 return;
             }
 
-            if (string.IsNullOrEmpty(Senha))
+            if (string.IsNullOrEmpty(Password))
             {
-                Erro = "Por favor, digite uma senha";
+                Error = "Por favor, digite uma senha";
+                return;
+            }
+
+            var usuario = UserService.Authenticate(Email, Password);
+            if(usuario == null)
+            {
+                Error = "E-mail ou senha inválidos.";
                 return;
             }
 
             App.Current.MainPage = new IndexPage();
+        }
+
+        private async void Register()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using EscolaWRApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +10,7 @@ namespace EscolaWRApp.Pages
 		public RegisterPage ()
 		{
 			InitializeComponent ();
-            genero.ItemsSource = new List<string>() { "Feminino", "Masculino" };
+            this.BindingContext = new RegisterViewModel();
 		}
 	}
 }

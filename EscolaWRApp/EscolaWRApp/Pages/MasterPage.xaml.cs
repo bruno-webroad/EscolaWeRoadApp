@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EscolaWRApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace EscolaWRApp.Pages
 		public MasterPage ()
 		{
 			InitializeComponent ();
+            this.BindingContext = new MasterViewModel();
 		}
-	}
+    }
 }
