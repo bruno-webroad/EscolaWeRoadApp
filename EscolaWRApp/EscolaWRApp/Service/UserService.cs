@@ -85,6 +85,7 @@ namespace EscolaWRApp.Service
             byte[] bytes = memory.ToArray();
 
             file.WriteAllBytes(bytes);
+            Settings.UrlPhoto = file.Path;
             return file.Path;
         }
     }
