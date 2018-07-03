@@ -1,3 +1,4 @@
+using EscolaWRApp.Helpers;
 using EscolaWRApp.Pages;
 using EscolaWRApp.Service;
 using System;
@@ -11,9 +12,8 @@ namespace EscolaWRApp
 	{
 		public App ()
 		{
-			InitializeComponent();
-            var user = UserService.GetUserLogged();
-            if (user == null)
+			InitializeComponent();            
+            if (string.IsNullOrEmpty(Settings.Email) || string.IsNullOrEmpty(Settings.Name))
                 MainPage = new NavigationPage(new IntroductionPage());
             else
                 MainPage = new IndexPage();

@@ -1,4 +1,5 @@
-﻿using EscolaWRApp.Models;
+﻿using EscolaWRApp.Helpers;
+using EscolaWRApp.Models;
 using EscolaWRApp.Pages;
 using EscolaWRApp.Service;
 using System;
@@ -54,6 +55,8 @@ namespace EscolaWRApp.ViewModels
             try
             {
                 UserService.Insert(User);
+                Settings.Email = User.Email;
+                Settings.Name = User.Name;
                 App.Current.MainPage = new IndexPage();
             }
             catch (Exception ex)

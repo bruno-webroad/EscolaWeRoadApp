@@ -1,4 +1,5 @@
-﻿using EscolaWRApp.Models;
+﻿using EscolaWRApp.Helpers;
+using EscolaWRApp.Models;
 using EscolaWRApp.Pages;
 using EscolaWRApp.Service;
 using System;
@@ -86,6 +87,9 @@ namespace EscolaWRApp.ViewModels
                 return;
             }
 
+            Settings.Email = usuario.Email;
+            Settings.Name = usuario.Name;
+            Settings.UrlPhoto = usuario.UrlPhoto;
             App.Current.MainPage = new IndexPage();
         }
 
